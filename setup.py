@@ -43,7 +43,7 @@ setup(
     include_package_data=True,
     packages=find_packages(),
     entry_points={
-        'jirafs_list_table': [
+        'jirafs_plugins': [
             'list_table = jirafs_list_table.plugin:Plugin',
         ]
     },
