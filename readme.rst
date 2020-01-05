@@ -3,7 +3,7 @@ Jirafs list-table Macro
 
 Adds a macro used for transforming a list into a table, for example::
 
-  {list-table}
+  <jirafs:list-table>
   *
   ** Capital
   ** Population (millions)
@@ -19,7 +19,7 @@ Adds a macro used for transforming a list into a table, for example::
   * Guatemala
   ** Guatemala City
   ** 15.47
-  {list-table}
+  </jirafs:list-table>
 
 will be automatically transformed into JIRA's special markup::
 
@@ -38,6 +38,11 @@ which, when rendered by JIRA, will look something like this:
 | (millions) |                 |                          |                 |                |
 +------------+-----------------+--------------------------+-----------------+----------------+
 
+Requirements
+------------
+
+This version requires a Jirafs version of at least 2.0.0; if you are running
+an earlier version of Jirafs, please install version 0.1.1 of this package.
 
 Installation
 ------------

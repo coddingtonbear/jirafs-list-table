@@ -6,7 +6,7 @@ from jirafs.plugin import (
 
 class Plugin(BlockElementMacroPlugin):
     MIN_VERSION = '1.10.0'
-    MAX_VERSION = '2.0.0'
+    MAX_VERSION = '3.0.0'
     COMPONENT_NAME = 'list-table'
 
     def get_row_by_number(self, columns, row):
@@ -24,8 +24,8 @@ class Plugin(BlockElementMacroPlugin):
         data = data.strip()
         columns = []
         current_column = []
-        for line in data.split('\n'):
-            if line.startswith('* '):
+        for line in data.strip().split('\n'):
+            if line.startswith('* ') or line == '*':
                 if current_column:
                     columns.append(current_column)
                     current_column = []
@@ -35,9 +35,7 @@ class Plugin(BlockElementMacroPlugin):
                 line_content = line[2:].strip()
                 current_column.append(line_content if line_content else ' ')
             else:
-                last_row = current_column[len(current_column)-1]
-                last_row = '\n'.join([last_row, line[2:].strip()])
-                current_column[len(current_column)-1] = last_row
+                raise MacroContentError("Unexpected content: %s" % line)
 
         if current_column:
             columns.append(current_column)
